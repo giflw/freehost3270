@@ -9,7 +9,7 @@
 	<artifactId>freehost3270-suite</artifactId>
 	<packaging>pom</packaging>
 	<name>FreeHost3270 modules suite</name>
-	<url>http://freehost3270.org</url>
+	<url>http://freehost3270.sourceforge.net</url>
 	<licenses>
 		<license>
 			<name>LGPL</name>
@@ -39,7 +39,7 @@
 	</issueManagement>
 	<scm>
 		<connection>
-			scm:cvs:pserver:anonymous@cvs.sourceforge.net:/cvsroot/freehost3270:freehost3270
+			scm:hg:http://hg.code.sf.net/p/freehost3270/code-hg
 		</connection>
 	</scm>
 	<mailingLists>
@@ -114,6 +114,18 @@
 					<descriptor>src/main/assembly/src.xml</descriptor>
 				</configuration>
 			</plugin>
+			<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-site-plugin</artifactId>
+			  <version>3.2</version>
+			  <dependencies>
+			    <dependency><!-- add support for ssh/scp -->
+			      <groupId>org.apache.maven.wagon</groupId>
+			      <artifactId>wagon-ssh</artifactId>
+			      <version>1.0</version>
+			    </dependency>
+			  </dependencies>
+			</plugin>
 		</plugins>
 		<extensions>
 		       <extension>
@@ -124,25 +136,10 @@
 		</extensions>
 	</build>
 	<distributionManagement>
-    	<repository>
-      		<uniqueVersion>false</uniqueVersion>
-      		<id>freehostRepository</id>
-      		<name>Freehost Repository</name>
-      		<url>scp://freehost3270.org/home/jstrayer/freehost3270.org/repository</url>
-      		<layout>default</layout>
-    	</repository>
-    	<snapshotRepository>
-      		<uniqueVersion>false</uniqueVersion>
-      		<id>freehostRepository</id>
-      		<name>Freehost Repository</name>
-      		<url>scp://freehost3270.org/home/jstrayer/freehost3270.org/repository</url>
-      		<layout>default</layout>
-    	</snapshotRepository>
-		<site>
-			<id>website</id>
-			<url>scp://freehost3270.org/home/jstrayer/freehost3270.org/sub/web
-			</url>
-		</site>
+	  <site>
+	    <id>website</id>
+	    <url>scp://shell.sourceforge.net/home/project-web/freehost3270/htdocs/</url>
+	  </site>
 	</distributionManagement>
 	<reporting>
 		<plugins>
